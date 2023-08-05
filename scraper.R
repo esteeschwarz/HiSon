@@ -1,7 +1,7 @@
 #13307.HiSon.dialect.diachron
 #20230721(18.31)
 #prepare dataset j. salmons
-#task: get information on dialect appearance/notion
+#task: get information on dialect appearance/notion: enregisterment
 ###########################
 
 library(xml2)
