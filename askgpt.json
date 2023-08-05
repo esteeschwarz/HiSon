@@ -1,0 +1,7 @@
+
+	{
+	  "model": "text-davinci-003",
+	  "prompt": "create a presentation about menomenee language. include 3 online referenced images showing people that speak the language and the environment of where they live. output that presentation as RMarkdown Rmd document so that it can be rendered by RStudio to a powerpoint presentation.",
+	  "temperature": 0,
+	  "max_tokens": 3000
+	}
