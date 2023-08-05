@@ -1,2 +1,4 @@
 # 13331.init
-notes to [HiSoN](https://hison.org) - historical linguistics network
+notes to [HiSoN][1] - historical linguistics network
+
+[1]:	https://hison.org
