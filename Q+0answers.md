@@ -1,0 +1,3 @@
+# 13331.open questionaire
+- can "historical linguistics" include/apply to future linguistics?    
+- is there research done on: enregisterment of e.g. artificial languages? or languages of the disabled? i am thinking of autisterna..., or trisomie-21 people...
