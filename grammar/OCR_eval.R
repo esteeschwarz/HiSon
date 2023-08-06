@@ -31,3 +31,13 @@ d4<-cbind(d2,d3$tok)
 #d3<-read_table("data/polytimet_DF.csv",col_names = c("tok","tag")) #read sketchenegine export table (vertical) of corpus
 
 set<-d3
+
+extraf<-"ſ"
+m<-grep(extraf,d4$tok)
+d4$tok_2<-gsub(extraf,"s",d4$tok)
+m<-grep("f",d4$tok_2)
+d4$f<-NA
+d4$f[m]<-d4$tok_2[m]
+
+
+write.csv(d4,"OCR_eval.csv")
