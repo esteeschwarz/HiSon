@@ -1,9 +1,10 @@
 M	SYM.Other.XY
 *	SYM.Other.XY
-%	N.Reg.*.*.Neut
-A	N.Reg.Nom.*.*
+%	N.Reg.Nom.Sg.Neut
+A	N.Name.Nom.Sg.*
 .	SYM.Pun.Sent
 4000	CARD
+
 440	CARD
 3	CARD
 Le	N.Name.*.*.*
@@ -18,12 +19,15 @@ P	N.Name.*.*.*
 coce	FM
 8	CARD
 RR	N.Reg.Nom.*.*
+
 ₰	CARD
 60	CARD
 2	CARD
-K	N.Reg.Nom.Sg.Neut
-A	N.Name.*.*.*
-2n	N.Name.*.*.*
+K	SYM.Other.XY
+A	SYM.Other.XY
+
+2n	N.Reg.Nom.Pl.Fem
+
 RE	N.Reg.Nom.Sg.Neut
 .	SYM.Pun.Sent
 TH	N.Name.Nom.Sg.Neut
@@ -46,10 +50,9 @@ our	FM
 countrymen	FM
 have	VFIN.Aux.1.Sg.Pres.Ind
 cultivat	FM
--	SYM.Pun.Hyph
-*	SYM.Other.XY
-₰	CARD
-◻	N.Name.*.*.*
+*	SYM.Other.Aster
+₰	FM
+◻	FM
 8	CARD
 L	N.Name.*.*.*
 K.A	N.Name.*.*.*
@@ -90,9 +93,7 @@ in	APPR.In
 other	N.Name.*.*.*
 branches	ADJA.Pos.Acc.Sg.Neut
 of	FM
-Philolo	FM
--	SYM.Pun.Hyph
-phy	FM
+Philolophy	FM
 ,	SYM.Pun.Comma
 and	FM
 even	FM
@@ -100,9 +101,7 @@ their	FM
 language	FM
 is	FM
 now	FM
-conſi	FM
--	SYM.Pun.Hyph
-dered	FM
+conſidered	FM
 by	FM
 Foreigners	N.Name.Gen.Sg.*
 as	ADV
@@ -131,9 +130,7 @@ pofleſs	FM
 ,	SYM.Pun.Comma
 have	VFIN.Aux.1.Sg.Pres.Ind
 carelelly	FM
-ſuf	FM
--	SYM.Pun.Hyph
-fered	FM
+ſuffered	FM
 it	FM
 to	FM
 be	FM
@@ -172,9 +169,7 @@ indeed	FM
 ,	SYM.Pun.Comma
 that	PRO.Dem.Subst.-.Nom.Sg.Neut
 many	FM
-wri	FM
--	SYM.Pun.Hyph
-ters	FM
+writers	FM
 have	VFIN.Aux.1.Sg.Pres.Ind
 been	FM
 of	FM
@@ -188,9 +183,7 @@ Grammatical	FM
 Eflays	FM
 on	FM
 the	FM
-En	N.Name.*.*.*
--	SYM.Pun.Hyph
-gliſb	FM
+Engliſb	FM
 tongue	FM
 ,	SYM.Pun.Comma
 incited	FM
@@ -199,9 +192,7 @@ perhaps	FM
 ,	SYM.Pun.Comma
 by	FM
 the	FM
-appa	FM
--	SYM.Pun.Hyph
-A	FM
+appaA	FM
 9	CARD
 rent	FM
 

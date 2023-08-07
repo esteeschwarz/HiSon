@@ -45,8 +45,7 @@ NP
 PP$
 NNS
 VHP
-JJ
-NN
+NNS
 SYM
 JJ
 NN
@@ -91,8 +90,6 @@ JJ
 NNS
 IN
 NP
-NN
-NN
 ,
 CC
 RB
@@ -100,9 +97,7 @@ PP$
 NN
 VBZ
 RB
-NN
-NN
-VVN
+JJ
 IN
 NNS
 IN
@@ -130,10 +125,8 @@ PP
 NNS
 ,
 VHP
-JJ
-NN
-NN
-VVD
+RB
+VVN
 PP
 TO
 VB
@@ -170,10 +163,8 @@ VVN
 ,
 RB
 ,
-DT
+IN/that
 JJ
-NN
-NN
 NNS
 VHP
 VBN
@@ -188,8 +179,6 @@ JJ
 NNS
 IN
 DT
-FW
-NN
 NN
 NN
 ,
@@ -200,7 +189,5 @@ RB
 IN
 DT
 NN
-NN
-DT
 CD
 NN
