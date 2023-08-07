@@ -3,7 +3,7 @@
 - 1st transcription: escriptorium, model: kraken/german print (standard model)
 - text is unedited. the error rate (1st page) is roughly 2% (15/750*100) and mostly concerns old english /ſ/ = /s/ of which there are 38 instances raw and the others were misinterpreted as /f/. just skimmed through, all other characters were mostly  recognised correctly, hyphenation has to be adapted.
 - the complete document transcription (segmentation: default model, transcription: kraken/german print) takes about 4min.
-- 2nd transcription: local kraken installation, cf. [install script](https://github.com/esteeschwarz/HiSon/grammar/installkraken.sh)
+- 2nd transcription: local kraken installation, cf. [install script](https://github.com/esteeschwarz/HiSon/blob/main/grammar/installkraken.sh)
 - to find false recognitions: 
   - tokenized the text (grammar-preface.pdf_000002)
   - search replace old-f (=s)
