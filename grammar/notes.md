@@ -5,8 +5,8 @@
 - the complete document transcription (segmentation: default model, transcription: kraken/german print) takes about 4min.
 - 2nd transcription: local [kraken](https://github.com/mittagessen/kraken.git) installation, cf. [install script](https://github.com/esteeschwarz/HiSon/blob/main/grammar/installkraken.sh)
 - [R-script essai](https://github.com/esteeschwarz/HiSon/blob/main/grammar/OCR_eval.R) to find false recognitions: 
-  - tokenized the text (grammar-preface.pdf_000002)
+  - tokenized the text ([grammar-preface.pdf_000002](grammar-preface.pdf_000002))
   - search replace old-f (=s)
   - extract all tokens containing /f/
-  - manually decide for (/f/ == f) or (/f/ == s) > OCR_eval.csv
+  - manually decide for (/f/ == f) or (/f/ == s) > [OCR_eval.csv](OCR_eval.csv)
   - the PoS-tagging of tokens in dataframe ([treetagger](https://cis.uni-muenchen.de/~schmid/tools/TreeTagger/) & [RFTagger](https://www.cis.lmu.de/~schmid/tools/RFTagger/)) is not satisfying as I expected to find by that misspelled words i.e. recognition errors (for words that could not be tagged should be words not in the lexikon i.e. contain a spelling mistake i.e. are false recognised). I could not get positives in a secure way.
