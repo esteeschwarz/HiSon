@@ -5,6 +5,8 @@
 library(stringi)
 library(readr)
 library(readtext)
+library(httr)
+library(xml2)
 
 src<-"grammar-preface.pdf_000002"
 #reads OCR text
@@ -53,3 +55,20 @@ d5$tok_3<-d5$tok_2
 m<-!is.na(d5$f3)
 d5$tok_3[m]<-d5$f3[m]
 write.csv(d5,"OCR_eval.csv")
+
+#13331.check oxford english dictionary for misspelled recognitions
+
+oedurl_base<-"https://ht.ac.uk/category-selection/"
+urlq<-"?qsearch="
+####
+# TERM:
+q<-"grammar"
+
+body_q<-paste0(urlq,q)
+oedurl_r<-paste0(oedurl_base,body_q)
+req<-httr::GET(oedurl_r)
+x<-httr::content(req,"text")
+oed_html<-read_html(x)
+a<-xml_find_all(oed_html,"//div")
+xml_text(a)
+
