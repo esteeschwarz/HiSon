@@ -8,6 +8,26 @@ library(readtext)
 library(httr)
 library(xml2)
 
+### TODO: kraken OCR from sketch, then evaluate recognition for each file seperate
+### reason: a heavy load of oed requests at once (if all pdf are ocr earlier) results in an interrupted
+### http request, so its better to have in between the evaluations of the text another section of
+### ocr and then start the next oed request with that pause in between i.e. step OCR > step oed > step OCR...
+# kraken: 
+#setwd() #dir with pdfs
+#kraken original command:
+callkraken<-"kraken -f pdf -i grammar_p01.pdf grammar.txt binarize segment -bl ocr -m german_print_best.mlmodel
+"
+#command in workflow:
+pdfpages<-"wiseman-grammar-kap-1.pdf"
+callkraken<-paste0("kraken -f pdf -i ",pdfpages," binarize segment -bl ocr -m german_print_best.mlmodel")
+system(callkraken)
+# filelist.3<-list.files()
+# m<-grep("00",filelist.3)
+# filelist.3<-filelist.3[m]
+# write.csv(filelist.3,"grammar-kap-1_filelist.csv")
+filelist.3b<-read_csv("grammar-kap-1_filelist.csv")
+filelist.3b<-filelist.3b$x
+
 #filelist<-list.files()
 #filelist
 #write.csv(filelist,"grammar-preface_filelist.csv")
@@ -17,7 +37,11 @@ x<-filelist.2$x
 #src<-"grammar-preface.pdf_000003"
 k<-4
 #pdfnum<-k
+
 filelist<-x
+#kap-1
+filelist<-filelist.3b
+
 #library(clipr)
 #write_clip(colnames(d6))
 #df.ns<-colnames(d6)
@@ -40,7 +64,7 @@ dfcolnames<-c("tok","RF_PoStag","tree_PoStag","tok_2","f.s","tok_3","oed_check",
 ###
 #k<-4
 #grammar-preface_DF-to-edit
-for (k in 18:length(filelist)){
+for (k in 7:length(filelist)){
 src<-filelist[k]
 #reads OCR text
 #tx1<-readLines(src)
@@ -163,15 +187,22 @@ colnames(d6)[m]<-"tok.to.edit"
 #write.csv(d6,"OCR_eval.2.csv")
 #k<-3
 d6$pdf.page<-pdfnum
-write.csv(d6,paste0("grammar-preface_DF-to-edit_pdf-0",pdfnum,".csv"))
+pdfname<-filelist[pdfnum]
+write.csv(d6,paste0(pdfname,"DF-to-edit.csv"))
 df.edit<-rbind(df.edit,d6)
 cat("dataframe for page -",pdfnum,"written\n")
 print(pdfnum)
-write.csv(df.edit,paste0("grammar-preface_DF-to-edit.csv"))
+write.csv(df.edit,paste0("grammar-kap-1_DF-to-edit.csv"))
 #writeLines(grammar.2,"grammar-preface_p02.txt")
-
+for (k in 1:1000000){
+  cat("break loop ",k,"\n")
 }
-#df.edit<-read.csv("grammar-preface_DF-to-edit.csv")
+}
+#for empty dataframe saved
+# df.empty<-df.edit[1,]
+# write_csv(df.empty,paste0("df.empty.csv"))
+# 
+# df.edit<-read.csv("df.empty.csv")
 #df.edit<-df.edit[,2:length(df.edit)]
 ### this:
 #df.edit$pdf.page[df.edit$pdf.page==193]<-3
