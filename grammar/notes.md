@@ -10,3 +10,6 @@
   - extract all tokens containing /f/
   - manually decide for (/f/ == f) or (/f/ == s) > [OCR_eval.csv](OCR_eval.csv)
   - the PoS-tagging of tokens in dataframe ([treetagger](https://cis.uni-muenchen.de/~schmid/tools/TreeTagger/) & [RFTagger](https://www.cis.lmu.de/~schmid/tools/RFTagger/)) is not satisfying as I expected to find by that misspelled words i.e. recognition errors (for words that could not be tagged should be words not in the lexikon i.e. contain a spelling mistake i.e. are false recognised). I could not get positives in a secure way.
+#### 13332.
+- spellchecking of words via http-request to: <https://ht.ac.uk/category-selection/?qsearch=sample>
+- resulting [dataframe table](wiseman-grammar_preface_DF-to-edit.csv) is corrected up to the last issue that could be solved automatically and is now to be manually corrected for misrecognitions in excel or numbers.
