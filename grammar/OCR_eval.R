@@ -8,19 +8,28 @@ library(readtext)
 library(httr)
 library(xml2)
 
-filelist<-list.files()
-filelist
-m<-grep("grammar-preface.pdf_00",filelist)
-src<-"grammar-preface.pdf_000003"
+#filelist<-list.files()
+#filelist
+#write.csv(filelist,"grammar-preface_filelist.csv")
+filelist.2<-read_csv("grammar-preface_filelist.csv")
+x<-filelist.2$x
+#m<-grep("grammar-preface.pdf_00",filelist)
+#src<-"grammar-preface.pdf_000003"
 k<-4
 #pdfnum<-k
-filelist<-filelist[m]
+filelist<-x
 #library(clipr)
 #write_clip(colnames(d6))
 #df.ns<-colnames(d6)
 #df.ns<-paste0('"',df.ns,'"',collapse = ",")
 #write_clip(df.ns)
-df.save<-df.edit
+### this only to run the script again
+#df.edit<-read.csv("grammar-preface_DF-to-edit.csv")
+#df.edit<-df.edit[,2:length(df.edit)]
+
+#df.save<-df.edit
+
+###
 #dfcolnames<-c("tok","RF_PoStag","tree_PoStag","tok_2","f.s","tok_3","oed_check","oed_FALSE","oed_TRUE","oed_tt","oed_NNS","punct","tok.to.edit")
 dfcolnames<-c("tok","RF_PoStag","tree_PoStag","tok_2","f.s","tok_3","oed_check","oed_FALSE","oed_TRUE","oed_tt","oed_NNS","punct","tok.to.edit","pdf.page")
 #df.edit[1:length(dfcolnames)]<-NA
@@ -29,7 +38,7 @@ dfcolnames<-c("tok","RF_PoStag","tree_PoStag","tok_2","f.s","tok_3","oed_check",
 # df.edit[1:14]<-NA
 # colnames(df.edit)<-dfcolnames
 ###
-k<-4
+#k<-4
 #grammar-preface_DF-to-edit
 for (k in 18:length(filelist)){
 src<-filelist[k]
@@ -164,9 +173,11 @@ write.csv(df.edit,paste0("grammar-preface_DF-to-edit.csv"))
 }
 #df.edit<-read.csv("grammar-preface_DF-to-edit.csv")
 #df.edit<-df.edit[,2:length(df.edit)]
-df.edit$pdf.page[df.edit$pdf.page==193]<-3
-df.edit.2<-df.edit[2:length(df.edit$tok),]
-write.csv(df.edit.2,paste0("wiseman-grammar_preface_DF-to-edit.csv"))
+### this:
+#df.edit$pdf.page[df.edit$pdf.page==193]<-3
+#df.edit.2<-df.edit[2:length(df.edit$tok),]
+#write.csv(df.edit.2,paste0("wiseman-grammar_preface_DF-to-edit.csv"))
+###
 
 #q<-"sorry-the-heavy-load-research-project-on-english-grammar"
 #checkitem(q)
