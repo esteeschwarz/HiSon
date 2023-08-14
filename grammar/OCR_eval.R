@@ -281,12 +281,56 @@ write.csv(df.edit,paste0("grammar-kap-1_DF-to-edit.csv"))
 for (k in 1:1000000){
   cat("break loop ",k,"\n")
 }
-}
+  }
+tail(df.edit)
+head(df.edit)
+df.edit.2<-read.csv("grammar-kap-1_DF-to-edit.csv")
+
+#df.edit.2<-df.edit.2[2:length(df.edit.2$tok),]
+#df.edit.2$X<-1:length(df.edit.2$X)
+#NT first run corrected (1:6) to DF
+k<-35
+#for(k in 2:length(df.cor$tok)){
+  token<-df.cor$tok_3[k]
+  #if token yet corrected
+  df.cor$oed_check[1]<-0
+  m<-df.cor$oed_check==1
+  m
+  sum(m)
+  k<-15
+  tok.unsure<-df.cor$tok_3[m]
+  tok.response<-df.cor$tok.to.edit[m]
+  #tok.m<-grep("[^A-Za-zäöüß'\\.]",tok.unsure)
+  tok.unsure<-gsub("(\\[|\\]|\\(|\\)|\\.|\\*|\\?|\\))","",tok.unsure)
+  #tok.rgx<-gsub("[\\[\\]\\(\\)]","",tok.rgx)
+  #tx<-"drei[ mal schwarzer ] kater"
+  #rgx<-gsub("(\\[|\\]|\\(|\\))","",tx)
+  #rgx
+  k<-1
+#  tok.unsure<-tok.rgx
+  #tok.unsure<-df.edit.2$tok.to.edit[m]
+  for(k in 1:length(tok.unsure)){
+    k
+    if(tok.unsure[k]!=""){
+      mna<-grep(tok.unsure[k],df.edit.2$oed_FALSE)
+    tok.unsure[k]
+    tok.response[k]
+    #mna<-!is.na(m)
+    sum(mna)
+    mna[1]
+    
+    df.edit.2$tok.to.edit[mna]<-tok.response[k]
+    mna<-1
+    }
+  } 
+#}
+  write.csv(df.edit.2,paste0("grammar-kap-1_DF-to-edit_fin.csv"))
+  
 #for empty dataframe saved
 # df.empty<-df.edit[1,]
 # write_csv(df.empty,paste0("df.empty.csv"))
 # 
-# df.edit<-read.csv("df.empty.csv")
+df.edit<-read.csv("df.empty.csv")
 #df.edit<-df.edit[,2:length(df.edit)]
 ### this:
 #df.edit$pdf.page[df.edit$pdf.page==193]<-3
