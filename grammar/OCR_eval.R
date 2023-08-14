@@ -64,8 +64,10 @@ dfcolnames<-c("tok","RF_PoStag","tree_PoStag","tok_2","f.s","tok_3","oed_check",
 ###
 #k<-4
 #grammar-preface_DF-to-edit
-for (k in 7:length(filelist)){
-src<-filelist[k]
+#for (k.file in 7:length(filelist)){
+  for (k.file in 14:length(filelist)){
+    
+  src<-filelist[k.file]
 #reads OCR text
 #tx1<-readLines(src)
 #tx1
@@ -146,19 +148,101 @@ a1<-xml_text(a[[8]])
 #d5<-read.csv("OCR_eval.csv")
 #k<-3
 d5$oed_check<-NA
-pdfnum<-k
-#checks if word exists in english dictionary
+pdfnum<-k.file
+#fetch manual corrections:
+df.cor<-read_csv("grammar-kap-1_DF-to-edit_M1.csv")
+df.act<-read_csv("grammar-kap-1_DF-to-edit.csv")
+df.cpt<-rbind(df.cor[1:length(df.cor)-1],df.act)
+tetoken<-"Monosyllables"
+tok.test<-array(1:length(d5$tok_3))
+#tetoken<-"Meinung"
+
+#k<-110 # toke: /Monofyllables/
+#checks if word exists in english dictionary:
+#436,7
 for(k in 1:length(d5$tok_3)){
+  token<-d5$tok_3[k]
+#  token<-tetoken
   print(k)
-  r1<-checkitem(d5$tok_3[k])
-  m<-grep("No results",r1)
-  d5$oed_check[k]<-sum(m)
+#  cat("token: ",token,"\n")
+  #check for manual correction:
+  #clean expression:
+#  a<-c(1:10)
+ # match("[0-9]",a) #not wks.
+ # help(match)
+  regx.out<-c("(","&",")","="," ","?","[","]",",",".",":",0:100,letters)
+  ttoken<-regx.out[10]
+  token
+  if(token%in%regx.out!=T){
+    #match token in latest DB + corrected DB
+    #if theres a match, then the token will be excluded from oed request
+    m<-match(token,df.cpt$tok.to.edit)
+#    m<-match(".",df.cpt$tok.to.edit)
+    
+        tok.m<-sum(m)
+  ifelse(tok.m==0,
+         tok.test[k]<-NA,
+         tok.test[k]<-m
+  )
+  
+  
+      cat("token: ",token,"\n")
+    print(tok.m)
+    tok.test[k]<-tok.m
   }
+  }
+m<-is.na(tok.test)
+sum(m)
+tok.cor<-d5$tok_3[m]
+#tok.unique<-unique(tok.test)
+#which tokens have not yet been corrected:
+#m<-is.na(tok.test)
+#sum(m)
+tok.check<-m
+#d5
+#check them at oed:
+k<-436
+tok.check[k]
+m
+tok.to.check<-which(is.na(tok.test))
+d5$tok[tok.check][k]
+d5$oed_check<-0
+for (k in 1:length(tok.check)){
+  if(tok.check[k]==F){
+  #  cat("token",k,"/",d5$tok_3[k],"/", "already corrected\n")
+    p.position<-tok.test[k]
+    d5$tok_4[k]<-df.cor$tok.to.edit[p.position]
+  }
+  if(tok.check[k]==T){
+  #  p.position<-tok.test[k]
+    cat("token",k,"/",d5$tok_3[k],"/", "to be checked\n")
+    r1<-checkitem(d5$tok_3[k]) #http request to oed for uncorrected tokens
+  m<-grep("No results",r1) #is there a "no result" response : token not a lexical item
+  #m<-grep(".*",r1) #is there a "no result" response : token not a lexical item
+  
+  d5$oed_check[k]<-sum(m) #sets oed_check to 1 if there is no result
+ # position<-df.cpt$tok.to.edit[]
+  print(sum(m))
+  #d5$oed_TRUE[df.cpt$tok.to.edit[]
+  }
+}
+m
+ # d5$tok_3[430]
+# for (k in 1:length(tok.check)){
+# tk.cor<-df.cor$tok_3[k]
+#   if(df.cor)
+#   print(k)
+#   r1<-checkitem(d5$tok_3[k])
+#   m<-grep("No results",r1)
+#   d5$oed_check[k]<-sum(m)
+#   }
 #sum(m)
 d5$oed_FALSE<-NA
 m<-d5$oed_check==F
+#put already requested oed or corrected token:
+#df.cpt$tok.to.edit[]
 d5$oed_TRUE[m]<-d5$tok_3[m]
-d5$oed_FALSE<-NA
+#d5$oed_FALSE<-NA
 m<-d5$oed_check==T
 d5$oed_FALSE[m]<-d5$tok_3[m]
 ###
