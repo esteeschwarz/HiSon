@@ -341,3 +341,45 @@ df.edit<-read.csv("df.empty.csv")
 #q<-"sorry-the-heavy-load-research-project-on-english-grammar"
 #checkitem(q)
 
+db1<-read_csv("grammar-preface_DF-to-edit.csv")
+db2<-read_csv("grammar-kap-1_DF-to-edit_fin.csv")
+
+db1$pdf.page[db1$pdf.page==258]<-1
+db1$pdf.page[db1$pdf.page==47]<-2
+db1$pdf.page[db1$pdf.page==193]<-3
+write_csv(db1,"grammar-preface_DF-to-edit.csv")
+db3<-read_csv("grammar-preface_DF-to-edit_m.csv")
+db2<-db2[,2:length(db2)]
+write_csv(db2,"grammar-kap-1_DF-to-edit_fin.csv")
+db1ns<-colnames(db1)
+db2ns<-colnames(db2)
+colnames(db1)<-db2ns
+###
+db2ns
+annis.col<-c(14,3,2,15,1)
+db1.annis<-db1[,annis.col]
+db2.annis<-db2[,annis.col]
+
+db.annis.ns<-c("tok","tag","tok.ocr","page","tok.id")
+colnames(db1.annis)<-db.annis.ns
+colnames(db2.annis)<-db.annis.ns
+library(writexl)
+dir.create("corpus/wiseman-grammar")
+#write_csv(db2.annis,"corpus/wiseman-grammar/kap-1.csv")
+write_xlsx(db2.annis,"corpus/wiseman-grammar/kap-1.xlsx")
+write_xlsx(db1.annis,"corpus/wiseman-grammar/preface.xlsx")
+
+peppercon1<-"/Users/guhl/Documents/GitHub/HiSon/grammar/r-conxl5.pepper"
+peppercon2<-"/Users/guhl/Documents/GitHub/HiSon/grammar/r-conxl7.pepper"
+zippath<-"/Users/guhl/Documents/GitHub/HiSon/grammar/corpus/annis/grammar/annis/"
+nszip<-"wiseman-grammar_v1.0.zip"
+source("/users/guhl/boxhkw/21s/dh/local/spund/corpuslx/callpepper_global.R")
+
+pepper.call(peppercon = peppercon1,zippath = zippath,nszip = nszip)
+pepper.call(peppercon = peppercon2,zippath = zippath,nszip = nszip)
+zipannis(zippath = zippath,nszip = nszip)
+
+###ANNIS workflow:
+
+
+
