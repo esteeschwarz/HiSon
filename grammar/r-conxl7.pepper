@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pepper-job id="tt001" version="1.0">
+<importer name="TreetaggerImporter" path="./corpus/annis/grammar/xlstt/wiseman-grammar">
+              
+            </importer>
+<exporter name="ANNISExporter" path="./corpus/annis/grammar/annis/">
+<!-- <customization>
+			<property key="pepper.after.tokenize">true
+			</property>
+		</customization> -->
+    </exporter>
+</pepper-job>
